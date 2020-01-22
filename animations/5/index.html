@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+<title>Animation 4</title>
+<style>
+svg {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+
+ path {
+  			 stroke: black;
+  	   stroke-width: 3;
+   	 stroke-linecap: 1;
+   stroke-dasharray: 0;
+   stroke-linejoin: round;
+    	 	   fill: none;
+  		  animation: mymove 10s infinite;
+animation-direction: alternate;
+}
+
+svg:hover{
+	cursor:none;
+}
+
+@keyframes mymove {
+  0% {
+	d: path('M 75 100 L 75 100 L 75 100 L 75 100 L 75 100 L 75 100 L 75 100 ');
+  }
+  10% {
+	d: path('M 50 50 L 100 50 L 100 150 L 50 150 L 50 50 L 50 50 L 50 50');
+  }
+  20% {
+	d: path('M 100 50 L 100 50 L 100 150 L 100 150 L 100 150 L 100 150 L 100 150');
+  }
+  30% {
+	d: path('M 50 50 L 100 50 L 100 100 L 50 100 L 50 150 L 100 150 L 100 150');
+  }
+  40% {
+	d: path('M 50 50 L 100 50 L 100 100 L 50 100 L 100 100 L 100 150 L 50 150 ');
+  }
+  50% {
+	d: path('M 50 50 L 50 100 L 100 100 L 50 100 L 100 100 L 100 150 L 100 50 ');
+  }
+  60% {
+	d: path('M 50 50 L 100 50 L 50 50 L 50 100 L 100 100 L 100 150 L 50 150 ');
+  }
+  70% {
+	d: path('M 100 50 L 50 50 L 50 100 L 100 100 L 100 150 L 50 150 L 50 100 ');
+  }
+  80% {
+	d: path('M 50 50 L 100 50 L 100 50 L 100 100 L 100 150 L 100 150 L 100 50 ');
+  }
+  90% {
+	d: path('M 50 100 L 100 100 L 100 50 L 50 50 L 50 150 L 100 150 L 100 100 ');
+  }  
+  100% {
+	d: path('M 50 150 L 100 150 L 100 50 L 50 50 L 50 100 L 100 100 L 100 150 ');
+  }
+}
+</style>
+
+<svg height="200" width="150">
+  <path d="" />
+</svg>
+
+</body>
+</html>
