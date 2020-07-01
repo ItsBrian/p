@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+body {margin:0px;  overflow: hidden;
+}
+
+:root {
+  --een: url(een.png);
+  --twee: url(twee.png);
+  --drie: url(drie.png);
+}
+
+#outer {
+	overflow: hidden;
+    height: 300px;
+    width: 600px;
+    margin: auto;
+    border: 1px solid red;
+}
+
+#inner {
+  background-image: var(--een), var(--twee);
+  background-repeat: no-repeat, repeat;
+  background-size: 50% 100%;
+  width: 200%;
+  height: 300px;
+  animation: kmoekakkenvent 30s infinite;
+}
+
+@keyframes kmoekakkenvent {
+	00.00% {
+    	background-position:0px;
+        background-image: var(--een), var(--twee);
+    }
+    16.66% {
+    	background-position:100%;
+        background-image: var(--een), var(--twee);
+    }
+    16.67% {
+    	background-position:100%;
+        background-image: var(--drie), var(--twee);
+    }
+    33.33% {
+    	background-position:0px;
+        background-image: var(--drie), var(--twee);
+    }
+    33.34% {
+    	background-position:0px;
+        background-image: var(--drie), var(--een);
+    }
+    50.00% {
+    	background-position:100%;
+        background-image: var(--drie), var(--een);
+    }
+    50.01% {
+    	background-position:100%;
+        background-image: var(--twee), var(--een);
+    }
+    66.66% {
+    	background-position:0px;
+        background-image: var(--twee), var(--een);
+    }
+    66.67% {
+    	background-position:0px;
+        background-image: var(--twee), var(--drie);
+    }
+    83.33% {
+    	background-position:100%;
+        background-image: var(--twee), var(--drie);
+    }
+    83.34% {
+    	background-position:100%;
+        background-image: var(--een), var(--drie);
+    }
+    100.0% {
+    	background-position:0px;
+        background-image: var(--een), var(--drie);
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>Magical background</h1>
+
+<div id="outer">
+  <div id="inner"></div>
+</div>
+
+</body>
+</html>
