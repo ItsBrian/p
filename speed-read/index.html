@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ItsBrian/p/master/speed-read/icon.png"/>
+<title>Speed Read</title>
+<meta charset='UTF-8'>
+	<meta name='twitter:card'        content='summary' />
+	<meta name='twitter:site'        content='@_ItsBrian_' />
+	<meta name='twitter:title'       content='Speed Read' />
+	<meta name='twitter:description' content='Test your reading skills' />
+	<meta name='twitter:image'       content='https://raw.githubusercontent.com/ItsBrian/p/master/speed-read/icon.png' />
+	<meta name='viewport'            content='width=device-width, initial-scale=1.0'>
+	<meta name='keywords'            content='ItsBrian, Github, ItsBrian.github.io, reading, test, speed'>
+	<meta name='description'         content='Test your reading skills'>
+	<meta name='language'            content='EN'>
+	<meta name='robots'              content='index,follow'>
+	<meta name='abstract'            content='Test your reading skills'>
+	<meta name='designer'            content='Github.com/ItsBrian'>
+	<meta name='owner'               content='Github.com/ItsBrian'>
+	<meta name='url'                 content='https://ItsBrian.github.io/p/speed-read/'>
+	<meta name='pagename'            content='Speed Read'>
+	<meta name='subtitle'            content='Test your reading skills'>
+	<meta name='HandheldFriendly'    content='True'>
+	<meta name='MobileOptimized'     content='320'>
+<style>
+* {font-family:arial}
 
+p#output {
+	white-space: pre-wrap;
+	margin-top: 50px;
+	border: 3px double black;
+	padding: 10px;
+}
+
+body {
+	max-width: 750px;
+	margin: auto;
+	padding: 10px;
+}
+
+p#preview {
+	height:18px;
+	overflow: hidden;
+}
+
+textarea#input {
+	width: calc(100% - 30px);
+	height: 100px;
+	border: 10px ridge rgba(50, 109, 220, 0.6);
+	padding: 5px;
+}
+
+button#start, button#done, button#agane {
+	display: block;
+	width: 30%;
+	height: 30px;
+	margin: auto;
+	left: 50%;
+}
+
+input#speed {width: calc(100% - 60px)}
+
+div#settings {
+	overflow: hidden;
+	transition: max-height 1s;
+}
+
+P#output span {
+	display: inline-block;
+	transition: filter .25s;
+}
+
+</style>
+</head>
+<body>
+
+<div id="settings" style="max-height: 1000px">
+<textarea id="input" placeholder="Paste the text you want to read here"></textarea>
+
+<p id="preview"></p>
+<button onclick="incrSpeed(-1)">-</button>
+<input id="speed" type="range" min="50" max="500" step="1" value="200" onchange="updateSpeed()">
+<button onclick="incrSpeed(1)">+</button>
+<p id="speed"><b>200</b> words per minute</p>
+<button id="start" onclick="start()">Start</button>
+</div>
+
+<div id="test" style="display:none;filter:blur(3px)">
+	<p id="output"></p>
+	<button id="done" onclick="finish()">Done</button>
+</div>
+
+<script>
+calcSpeed(200)
+
+previewTekst = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+previewWoorden = previewTekst.split(" ")
+previewLenght = previewWoorden.length
+
+function incrSpeed(incr){
+	v = document.querySelector("input#speed");
+	v.value = +v.value + incr;
+	updateSpeed()
+}
+
+function updateSpeed(){
+	speed = document.querySelector("input#speed").value
+	document.querySelector("p#speed").innerHTML = `<b>${speed}</b> words per minute`
+	calcSpeed(speed)
+}
+
+function calcSpeed(x){
+	speed = (1/(x/60))*1000
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function runPreview(){
+	for (w in previewWoorden){
+		document.querySelector("p#preview").innerText += ` ${previewWoorden[w]}`
+		await sleep(speed)
+	}
+	
+	document.querySelector("p#preview").innerText = "";
+	runPreview()
+}
+
+runPreview()
+
+async function start(){
+	document.querySelector("button#start").disabled = true;
+	document.querySelector("button#done").disabled = true;
+	document.querySelector("div#settings").style = "max-height: 0px";
+	pre = document.querySelector("p#output");
+	document.querySelector("div#test").style = "display:block; filter:blur(3px)"
+	tekst = document.querySelector("textarea#input").value;
+	woorden = tekst.split(" ");
+	for (w in woorden){
+		pre.innerHTML += `<span>${woorden[w].replace(/\n/g," ")} </span>`
+		document.querySelectorAll("p#output span")[w].innerText = document.querySelectorAll("p#output span")[w].innerText.replace(/\n/g," ")
+		await sleep(1)
+	}
+	await sleep(1000)
+	document.querySelector("div#test").style = "display:block; filter:blur(0px)"
+	await sleep(1000)
+	startTime = Date.now()
+	document.querySelector("button#done").disabled = false;
+	isFinished = false;
+	for (w in woorden){
+		document.querySelectorAll("p#output span")[w].style = "filter:blur(3px)"
+		if (isFinished == false){
+			await sleep(speed)
+		}
+	}
+	document.querySelector("button#done").disabled = true;
+	if (isFinished == false) finishTime = Date.now()
+	await sleep(1000)
+	timeTook = new Date(finishTime-startTime).toISOString().slice(14, -1)
+	averageWpm = Math.round((woorden.length/((finishTime-startTime)/1000))*60)
+	if (isFinished == false) averageWpm = document.querySelector("input#speed").value
+	pre.innerHTML = `<center>You finished reading <b>${woorden.length} words</b> in <b>${timeTook}</b><br>You read at an average of <b>${averageWpm} words per minute</b><br><br><button id="agane" onclick="goAgane()">Try Again</button></center>`
+}
+
+function goAgane(){
+	document.querySelector("div#test").style = "display:none; filter:blur(3px)"
+	document.querySelector("button#start").disabled = false;
+	document.querySelector("div#settings").style = "max-height: 1000px";
+	pre.innerHTML = "";
+}
+
+function finish(){
+	isFinished = true;
+	finishTime = Date.now()
+}
+</script>
+
+</body>
+</html>
