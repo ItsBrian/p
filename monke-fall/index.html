@@ -1,1 +1,68 @@
-<!-- placeholder -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>monke fall</title>
+<style>video::-webkit-media-controls {
+  display:none !important;
+}</style>
+        <meta charset='UTF-8'>
+            <meta name='twitter:card'        content='summary' />
+            <meta name='twitter:site'        content='@_ItsBrian_' />
+            <meta name='twitter:title'       content='ItsBrian.github.io' />
+            <meta name='twitter:description' content='monke fall' />
+            <meta name='twitter:image'       content='https://i.gyazo.com/d8394cd09c07ebbcffa0851627292979.png' />
+            <meta name='viewport'            content='width=device-width, initial-scale=1.0'>
+            <meta name='keywords'            content='monke, fall'>
+            <meta name='description'         content='monke fall'>
+            <meta name='language'            content='EN'>
+            <meta name='robots'              content='index,follow'>
+            <meta name='abstract'            content='monke fall'>
+            <meta name='designer'            content='Github.com/ItsBrian'>
+            <meta name='owner'               content='Github.com/ItsBrian'>
+            <meta name='url'                 content='https://ItsBrian.github.io/'>
+            <meta name='pagename'            content='monke fall'>
+            <meta name='subtitle'            content='monke fall'>
+            <meta name='HandheldFriendly'    content='True'>
+            <meta name='MobileOptimized'     content='320'>
+<link rel="icon" href="https://i.gyazo.com/d8394cd09c07ebbcffa0851627292979.png">
+</head>
+<body style="background-color:black;margin:0px;overflow:hidden">
+<video style="height:100vh;width:100%;object-fit: fill;filter:blur(15px)grayscale(100%)" autoplay loop>
+  <source src="https://itsbrian.github.io/p/monke-fall/monke-fall.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<script src="https://itsbrian.github.io/jquery.js"></script>
+<script src="https://itsbrian.github.io/stay.js"></script>
+<script>
+setInterval(()=>{
+	var promise = document.querySelector('video').play();
+
+	if (promise !== undefined) {
+	  promise.then(_ => {
+		document.querySelector('video').style.filter = "blur(0px)";
+		document.querySelector('video').style.cursor = "none";
+		
+		
+		var elem = document.querySelector("video");
+		openFullscreen()
+		function openFullscreen() {
+		  if (elem.requestFullscreen) {
+			elem.requestFullscreen();
+		  } else if (elem.webkitRequestFullscreen) { /* Safari */
+			elem.webkitRequestFullscreen();
+		  } else if (elem.msRequestFullscreen) { /* IE11 */
+			elem.msRequestFullscreen();
+		  }
+		}
+		
+		
+	  }).catch(error => {
+		// 
+	  });
+	}
+}, 100)
+</script>
+
+</body>
+</html>
