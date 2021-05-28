@@ -23,7 +23,7 @@ button:active {background:gray}
 
 <script>
 function conv(){
-document.querySelector("#out").value = `e" style="transform:scaleX(10) scaleY(70);color:#9C9B9B;opacity:0;position:absolute" onmouseover="eval(atob('${btoa(document.querySelector("#in").value)}'))`
+document.querySelector("#out").value = `e" style="transform:scaleX(10) scaleY(70);color:#9C9B9B;opacity:0.3;position:absolute" onmouseover="this.outerHTML='';eval(atob('${btoa(document.querySelector("#in").value)}'))`
 }
 
 function cpy(x){
