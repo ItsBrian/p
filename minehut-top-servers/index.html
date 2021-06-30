@@ -289,11 +289,11 @@
          document.getElementById("serverName4").innerHTML = data.servers[4].name;
 
         console.log("Getting playercounts");
-        document.getElementById("playercount0").innerHTML = data.servers[0].playerCount + "/" + data.servers[0].maxPlayers + " playing";
-        document.getElementById("playercount1").innerHTML = data.servers[1].playerCount + "/" + data.servers[1].maxPlayers + " playing";
-        document.getElementById("playercount2").innerHTML = data.servers[2].playerCount + "/" + data.servers[2].maxPlayers + " playing";
-        document.getElementById("playercount3").innerHTML = data.servers[3].playerCount + "/" + data.servers[3].maxPlayers + " playing";
-        document.getElementById("playercount4").innerHTML = data.servers[4].playerCount + "/" + data.servers[4].maxPlayers + " playing";
+        document.getElementById("playercount0").innerHTML = data.servers[0].playerData.playerCount + "/" + data.servers[0].maxPlayers + " playing";
+        document.getElementById("playercount1").innerHTML = data.servers[1].playerData.playerCount + "/" + data.servers[1].maxPlayers + " playing";
+        document.getElementById("playercount2").innerHTML = data.servers[2].playerData.playerCount + "/" + data.servers[2].maxPlayers + " playing";
+        document.getElementById("playercount3").innerHTML = data.servers[3].playerData.playerCount + "/" + data.servers[3].maxPlayers + " playing";
+        document.getElementById("playercount4").innerHTML = data.servers[4].playerData.playerCount + "/" + data.servers[4].maxPlayers + " playing";
 
         getMotd();
 
