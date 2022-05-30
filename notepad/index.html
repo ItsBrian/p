@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Notepad</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-
-* {width: 99.7%; resize: none;}
-
-.header {height: 50px; font-size: 38px;}
-
-.main {height: 750px; font-size: 18px;}
-
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <script src="script.js" defer></script>
+    <title>Notepad</title>
+</head>
 <body>
-
-<textarea class="header">Title</textarea>
-<br>
-<textarea class="main">Text</textarea>
-
+    <div id="tabs"></div>
+    <input type="text" id="title" placeholder="Title" spellcheck="false">
+    <textarea id="content" placeholder="Text" spellcheck="false"></textarea>
+    <button id="trash"></button>
 </body>
 </html>

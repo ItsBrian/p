@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    background-color: #141414;
+    overflow: hidden;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #303030; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #404040; 
+  }
+  
+
+#tabs {
+    background-color: #212121;
+    display: flex;
+    gap: 1rem;
+    padding-inline: 1rem;
+    overflow-x: scroll;
+    padding-bottom: .5rem;
+}
+
+#tabs button {
+    color: lightgray;
+    background-color: #212121;
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 0 2px gray;
+    cursor:pointer;
+    transition: box-shadow .1s;
+    line-height: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 10rem;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+#tabs button:hover {
+    box-shadow: 0 0 2px white;
+}
+
+#tabs button.active {
+    box-shadow: 0 2px 3px white;
+}
+
+#tabs button:last-child {
+    font-size: 2rem;
+    color: gray;
+}
+
+input, textarea {
+    display: block;
+    width: calc(100vw - 2rem);
+    background-color: transparent;
+    color: white;
+    margin: 1rem;
+    padding: .5rem;
+    outline: 1px solid #303030;
+    border: none;
+    resize: none;
+}
+
+input:focus, textarea:focus {
+    outline: 1px solid gray;
+}
+
+input {
+    font-size: 2.5rem;
+}
+
+textarea {
+    height: calc(100vh - 10rem);
+    font-size: 1.2rem;
+}
+
+#trash {
+    position: absolute;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    bottom: 0;
+    right: 0;
+    margin: 2rem;
+    border-radius: 100%;
+    background-image: url('trash-bin.svg');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 45% 50%;
+    filter: invert(100);
+    border: 1px solid #ababba;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#trash:hover {
+    opacity: 1;
+}
